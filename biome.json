@@ -30,6 +30,7 @@
 		"a11y": {
 		  "noBlankTarget": "off",
 		  "useButtonType": "off"
+
 		},
 		"correctness": {
 		  "noUnusedImports": "error",
