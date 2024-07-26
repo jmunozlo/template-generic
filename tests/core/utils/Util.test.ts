@@ -1,4 +1,4 @@
-import { sum } from '../../src/utils/Utils'
+import {sum} from '../../../src/core/utils/Utils'
 import {expect, test} from 'vitest'
 
 
