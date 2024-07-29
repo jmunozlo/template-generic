@@ -2,14 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '@/components/atoms/Button'
 import { useAuth } from '@/core/hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
-  max-width: 400px;
-  margin: 0 auto;
+flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 2rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+
+  @media (min-width: 768px) {
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    flex: 1;
+  }
 `
 
 const WelcomeMessage = styled.p`
@@ -23,12 +30,16 @@ interface AuthContainerProps {
 
 export const AuthContainer: React.FC<AuthContainerProps> = ({ children }) => {
   const { user, signOut } = useAuth()
-
+  const navigate = useNavigate()
+  const out = () => {
+    signOut()
+    navigate('/')
+  }
   if (user) {
     return (
       <Container>
-        <WelcomeMessage>Bienvenido, {user.email}</WelcomeMessage>
-        <Button onClick={signOut}>Cerrar Sesión</Button>
+        <WelcomeMessage>Bienvenido, {user.displayName }</WelcomeMessage>
+        <Button onClick={out}>Cerrar Sesión</Button>
       </Container>
     )
   }
