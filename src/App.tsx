@@ -8,9 +8,11 @@ const App = () => {
   const app = useFirebaseApp()
   const auth = getAuth(app)
 
-  return <AuthProvider sdk={auth}>
-    <RouterProvider router={router} />
-  </AuthProvider>
+  return (
+    <AuthProvider sdk={auth}>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  )
 }
 
 export default App
