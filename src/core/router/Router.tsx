@@ -3,7 +3,7 @@ import { RootLayout } from '@/pages/layouts/RootLayout'
 import { LoginPage } from '@/pages/LoginPage'
 import { createBrowserRouter } from 'react-router-dom'
 
-export const router = createBrowserRouter([
+export const Router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,

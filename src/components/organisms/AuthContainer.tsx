@@ -1,48 +1,50 @@
-import React from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
-import { Button } from '@/components/atoms/Button'
+import { LoginForm } from '@/components/molecules/LoginForm'
 import { useAuth } from '@/core/hooks/useAuth'
 import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
+display: flex;
 flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
-  background-color: white;
+flex-direction: row;
+background-color: white;
 
-  @media (min-width: 768px) {
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    flex: 1;
-  }
+
 `
 
-const WelcomeMessage = styled.p`
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-`
 
-interface AuthContainerProps {
-  children: React.ReactNode
-}
-
-export const AuthContainer: React.FC<AuthContainerProps> = ({ children }) => {
-  const { user, signOut } = useAuth()
+export const AuthContainer = () => {
+  const [error, setError] = useState('')
+  const { signInWithEmail, signInWithGoogle } = useAuth()
   const navigate = useNavigate()
-  const out = () => {
-    signOut()
-    navigate('/')
-  }
-  if (user) {
-    return (
-      <Container>
-        <WelcomeMessage>Bienvenido, {user.displayName }</WelcomeMessage>
-        <Button onClick={out}>Cerrar Sesión</Button>
-      </Container>
-    )
+
+  const handleEmailLogin = async (email: string, password: string) => {
+    try {
+      await signInWithEmail(email, password)
+      navigate('/dashboard')
+    } catch (err) {
+      setError('Error al iniciar sesión. Por favor, verifica tus credenciales.')
+    }
   }
 
-  return <Container>{children}</Container>
+  return (
+    <Container>
+      <ImageContainer />
+      <LoginForm />
+    </Container>
+  )
+
 }
+
+
+const ImageContainer = styled.div`
+flex: 2;
+background-image: url('src/assets/gradient.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+min-height: 100vh;
+
+ 
+`

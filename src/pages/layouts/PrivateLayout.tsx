@@ -1,5 +1,5 @@
 
-import { Header } from '@/components/Header'
+import { Header } from '@/components/molecules/Header'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useSigninCheck } from 'reactfire'
 

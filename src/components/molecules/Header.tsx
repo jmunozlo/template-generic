@@ -1,5 +1,5 @@
 import { useAuth } from 'reactfire'
-import { Button } from './atoms/Button'
+import { Button } from '@/components/atoms/Button'
 
 export const Header = () => {
   const auth = useAuth()
