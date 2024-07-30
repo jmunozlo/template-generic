@@ -1,4 +1,3 @@
-
 import { Header } from '@/components/molecules/Header'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useSigninCheck } from 'reactfire'
@@ -14,7 +13,8 @@ export const PrivateLayout = () => {
       <>
         <Header />
         <Outlet />
-      </>)
+      </>
+    )
   }
 
   return <Navigate to="/" />

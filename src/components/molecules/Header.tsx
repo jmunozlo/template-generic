@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <>
       <header>
-      <Button onClick={() => auth.signOut()}>Sign Out</Button>
+        <Button onClick={() => auth.signOut()}>Sign Out</Button>
       </header>
     </>
   )

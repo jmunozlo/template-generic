@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes } from 'react'
+import { forwardRef, type InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

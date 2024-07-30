@@ -6,7 +6,7 @@ import {
   GoogleAuthProvider,
   signOut as firebaseSignOut,
   onAuthStateChanged,
-  User,
+  type User,
 } from 'firebase/auth'
 
 import { app } from '@/core/firebase/config.ts'
