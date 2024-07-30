@@ -2,7 +2,7 @@ import { AuthProvider, useFirebaseApp } from 'reactfire'
 
 import { RouterProvider } from 'react-router-dom'
 import { getAuth } from 'firebase/auth'
-import { router } from '@/core/routers/router'
+import { router } from '@/core/routers/Router'
 
 const App = () => {
   const app = useFirebaseApp()

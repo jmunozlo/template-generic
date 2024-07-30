@@ -1,23 +1,20 @@
-import { PrivateLayout } from '@/pages/layouts/private-layout'
+import { PrivateLayout } from '@/pages/layouts/PrivateLayout'
+import { RootLayout } from '@/pages/layouts/RootLayout'
 import { LoginPage } from '@/pages/LoginPage'
 import { createBrowserRouter } from 'react-router-dom'
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <LoginPage />,
+    element: <RootLayout />,
     children: [
       {
-        path: 'about',
-        element: <div>About</div>,
+        path: '/',
+        element: <LoginPage />,
       },
       {
         path: 'dashboard',
         element: <PrivateLayout />,
-      },
-      {
-        path: 'settings',
-        element: <div>Settings</div>,
       },
     ],
   },
