@@ -1,3 +1,5 @@
+import { AgendaPage } from '@/pages/AgendaPage'
+import { DashboardPage } from '@/pages/DashboardPage'
 import { PrivateLayout } from '@/pages/layouts/PrivateLayout'
 import { RootLayout } from '@/pages/layouts/RootLayout'
 import { LoginPage } from '@/pages/LoginPage'
@@ -13,8 +15,18 @@ export const Router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
-        path: 'dashboard',
+        path: '/',
         element: <PrivateLayout />,
+        children: [
+          {
+            path: 'dashboard',
+            element: <DashboardPage />,
+          },
+          {
+            path: 'agenda',
+            element: <AgendaPage />,
+          },
+        ]
       },
     ],
   },
