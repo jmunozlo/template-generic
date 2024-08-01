@@ -7,13 +7,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   fullWidth?: boolean
 }
 
-const InputWrapper = styled.div<{
-  fullWidth?: boolean
-}>`
+const InputWrapper = styled.div<{}>`
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
-    width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
+    width: 100%;
     `
 const StyledLabel = styled.label`
 margin-bottom: 0.5rem;
@@ -40,11 +38,11 @@ margin-top: 0.25rem;
 `
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, fullWidth, ...props }, ref) => {
+  ({ label, error, ...props }, ref) => {
     return (
-      <InputWrapper fullWidth={fullWidth}>
+      <InputWrapper>
         {label && <StyledLabel htmlFor={props.id}>{label}</StyledLabel>}
-        <StyledInput ref={ref} hasError={!!error} {...props} />
+        <StyledInput ref={ref} {...props} />
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </InputWrapper>
     )

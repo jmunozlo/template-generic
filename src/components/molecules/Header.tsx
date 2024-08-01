@@ -4,16 +4,20 @@ import styled from 'styled-components'
 
 export const Header = () => {
   const auth = useAuth()
-  console.log('auth',auth);
+  console.log('auth', auth)
   return (
     <ContainerNavbar>
-      <Logo/>
+      <Logo />
       <Navbar>
         <Ul>
-          <li><a href="/dashboard">Dashboard</a></li>
-          <li><a href="/agenda">Agenda</a></li>
+          <li>
+            <a href="/dashboard">Dashboard</a>
+          </li>
+          <li>
+            <a href="/agenda">Agenda</a>
+          </li>
         </Ul>
-        <Button onClick={() => auth.signOut()} >Sign Out</Button>
+        <Button onClick={() => auth.signOut()}>Sign Out</Button>
       </Navbar>
     </ContainerNavbar>
   )
@@ -75,4 +79,3 @@ const Ul = styled.ul`
     background-color: #6e8cf8;
   }
 `
-

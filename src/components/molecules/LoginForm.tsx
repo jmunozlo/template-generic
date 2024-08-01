@@ -4,7 +4,6 @@ import { Input } from '@/components/atoms/Input'
 import { Button } from '@/components/atoms/Button'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/core/hooks/useAuth'
-import Swal from 'sweetalert2'
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('')
@@ -17,12 +16,7 @@ export const LoginForm = () => {
       await signInWithEmail(email, password)
       navigate('/dashboard')
     } catch (err) {
-      Swal.fire({
-        title: 'Error!',
-        text: `Error al iniciar sesión. Por favor, verifica tus credenciales.${err}`,
-        icon: 'error',
-        confirmButtonText: 'Cool',
-      })
+      console.log(err)
     }
   }
 
@@ -31,27 +25,21 @@ export const LoginForm = () => {
       await signInWithGoogle()
       navigate('/dashboard')
     } catch (err) {
-      await Swal.fire({
-        title: 'Error!',
-        text: `Error al iniciar sesión. Por favor, verifica tus credenciales. ${err}`,
-        icon: 'error',
-        confirmButtonText: 'Cool',
-      })
+      console.log(err)
     }
   }
 
   return (
-    <Form>
+    <Form onSubmit={(e) => e.preventDefault()}>
       <Input
+        style={{ width: ' 100%' }}
         type="email"
         label="Correo Electrónico"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
-        fullWidth
       />
       <Input
-        fullWidth
         type="password"
         label="Contraseña"
         value={password}

@@ -7,6 +7,8 @@ import {
   signOut as firebaseSignOut,
   onAuthStateChanged,
   type User,
+  createUserWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth'
 
 import { app } from '@/core/firebase/config.ts'
@@ -28,6 +30,7 @@ export const useAuth = () => {
 
   const signInWithEmail = async (email: string, password: string) => {
     const auth = getAuth(app)
+
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -36,6 +39,8 @@ export const useAuth = () => {
       )
       setUser(userCredential.user)
     } catch (error) {
+      console.log({ error })
+
       console.error('Error signing in with email and password', error)
       throw error
     }
@@ -64,11 +69,32 @@ export const useAuth = () => {
     }
   }
 
+  const signUpWithEmail = async (
+    email: string,
+    password: string,
+    name: string
+  ) => {
+    const auth = getAuth(app)
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
+      await updateProfile(userCredential.user, { displayName: name })
+      setUser(userCredential.user)
+    } catch (error) {
+      console.error('Error signing up with email and password', error)
+      throw error
+    }
+  }
+
   return {
     user,
     loading,
     signInWithEmail,
     signInWithGoogle,
     signOut,
+    signUpWithEmail,
   }
 }
