@@ -1,0 +1,18 @@
+ul{
+    display: flex;
+    list-style: none;
+    & li {
+      color: white;
+    }
+    & li a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem;
+      height: 3rem;
+      border-radius: 4px;
+    }
+    & li a:hover {
+      background-color: #6e8cf8;
+    }
+}
+
